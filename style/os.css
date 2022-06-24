@@ -1,0 +1,66 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body, html{
+	width: 100vw;
+	height: 100vh;
+}
+
+.desktop{
+	display: flex;
+	flex-wrap: wrap;
+	position: relative;
+	width: 100%;
+	height: 70vh;
+	background-color: white;
+}
+
+.desktop > div{
+	display: none;
+	position: relative;
+	justify-content: center;
+	align-items: center;
+	min-width: 50%;
+	min-height: 50%;
+	border: 1px solid black;
+	order: 0;
+}
+
+.preview{
+	display: flex;
+	width: 100%;
+	height: 30vh;
+	background-color: red;
+}
+
+.preview > div{
+	display: flex;
+	justify-content: center;
+	position: relative;
+	align-items: center;
+	width: 25%;
+	height: 80%;
+	margin: 2%;
+	border: 1px solid black;
+	cursor: pointer;
+}
+
+.desktop .active{
+	display: flex;
+}
+
+.preview .active{
+	display: none;
+}
+
+.close-button{
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	right: 0;
+	top: 0;
+	background-color: red;
+}
