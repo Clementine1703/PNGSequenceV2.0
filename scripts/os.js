@@ -15,9 +15,9 @@ function active(el, visible = true){
 	}
 	}
 
-	// function change_elements_size(){
-	// 	$('.desktop div')
-	// }
+
+
+
 
 	$('.preview').on('click', function(event){
 		if ($(event.target).attr('data-couple')){
@@ -33,12 +33,16 @@ function active(el, visible = true){
 			$(el).css('order', queue_number);
 			
 			active(el);
+			width_calc();
 		}
 	})
 
 
+
+
+
 	$('.desktop .close-button').each(function(){
-		$(this).on('click', function(){
+		$(this).on('mousedown', function(){
 
 			// взяли у родителя кнопки закрытия содержимое data-couple
 			let parent = $(this).parent();
@@ -48,5 +52,38 @@ function active(el, visible = true){
 
 			$(`.preview > div[data-couple='${id}']`).removeClass('active');
 
+			width_calc();
+
 		})
 	})
+
+
+
+
+
+	function width_calc(){
+		let queue_number = $('.desktop > div').filter(function(){
+			return $(this).hasClass('active');
+		}).length;
+
+		if (queue_number == 1){
+			$('.desktop > div').each(function(){
+				$(this).css('width', '100%');
+			})
+			return 0;
+		}
+
+		$('.desktop > div').each(function(){
+			$(this).css('width', '50%');
+		})
+	}
+
+
+	$( ".el-2" ).draggable({
+		containment: "parent", 
+		revertDuration: 200,
+		stack: ".desktop",
+	 });
+		
+
+	
