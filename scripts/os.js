@@ -30,7 +30,7 @@ function active(el, visible = true){
 			// получаем элемент по дата аттрибуту
 			let el = $(`.${$(event.target).attr('data-couple')}`);
 			
-			$(el).css('order', queue_number);
+			$(el).css('order', queue_number + 1);
 			
 			active(el);
 			width_calc();
@@ -79,11 +79,55 @@ function active(el, visible = true){
 	}
 
 
-	$( ".el-2" ).draggable({
-		containment: "parent", 
-		revertDuration: 200,
-		stack: ".desktop",
-	 });
-		
 
+
+
+	// перетаскивание
+	 $('.desktop > div').each(function(){
+		$(this).draggable({
+			containment: "parent", 
+			revert: true,
+			revertDuration: 200,
+			stack: ".desktop",
+			start: function(){
+				$(this).css({'cursor': 'grabbing',
+					'cursor': '-moz-grabbing',
+					'cursor': '-webkit-grabbing',});
+			},
+			stop: function(){
+				$(this).css('cursor', 'default');
+			}
 	
+	
+		 });
+
+		 $(this).droppable({
+			drop: function(event){
+				let o = $(event.target).css('order');
+				$(event.target).css('order', $(event.originalEvent.target).css('order'));
+
+				console.log(event.originalEvent.target);
+				console.log(event.target);
+
+
+				$(event.target).animate({
+					order: $(event.originalEvent.target).css('order'),
+				 }, 10, function(){
+					$(event.target).css({'z-index' : '', 'left' : '', 'top' : ''});
+				 });
+
+				
+
+				$(event.originalEvent.target).animate({
+					order: o,
+				 }, 10, function(){
+					$(event.originalEvent.target).css({'z-index' : '', 'left' : '', 'top' : ''});
+				 });
+				 
+				// $(event.target).css({'z-index' : '', 'left' : '', 'top' : ''});
+				// $(event.originalEvent.target).css({'z-index' : '', 'left' : '', 'top' : ''});
+				
+			}
+		 })
+	 })
+
