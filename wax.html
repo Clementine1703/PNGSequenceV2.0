@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="bootstrap/bootstrap.css">
+	<title>Рыба</title>
+</head>
+<body>
+	<div class="container" id="app">
+		<div class="stake row justify-content-center">
+			<button type="button" class="btn btn-light btn-lg m-5 login-btn">log in</button>
+		</div>
+		<div class="row">
+			<h1 class="text-truncate text-center col-12 "></h1>
+		</div>
+		
+
+	</div>
+	
+	
+<script src="scripts/jquery.min.js"></script>
+<script src="bootstrap/bootstrap.js"></script>
+<script src="scripts/vue.min.js"></script>
+<script src="scripts/waxjs/dist-web/waxjs.js"></script>
+<script type="text/javascript">
+	document.addEventListener('DOMContentLoaded', function(){
+
+
+		const wax = new waxjs.WaxJS({
+  			rpcEndpoint: 'https://wax.greymass.com',
+		});
+
+		$('.login-btn').on('click', async function login() {
+  			try {
+	  		const userAccount = await wax.login();
+	  		const pubKeys = wax.pubKeys;
+	  		console.log($('h1'));
+	  		$('h1').text(`Hello, ${userAccount}!`);
+
+	  // const result = await wax.api.transact({
+	  // 	actions: [{
+	  // 	  account: 'eosio.token',
+	  // 	  name: 'transfer',
+	  // 	  authorization: [{
+	  // 		 actor: wax.userAccount,
+	  // 		 permission: 'active',
+	  // 	  }],
+	  // 	  data: {
+	  // 		 from: wax.userAccount,
+	  // 		 to: 'eosio',
+	  // 		 quantity: '0.00000001 WAX',
+	  // 		 memo: '',
+	  // 	  },
+	  // 	}]
+	  //  }, {
+	  // 	blocksBehind: 3,
+	  // 	expireSeconds: 1200,
+	  //  });
+
+
+
+
+  			} catch (e) {
+	  		alert('Что-то пошло не так...');
+  			}
+		})
+	})
+</script>
+</body>
+</html>

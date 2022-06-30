@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="bootstrap/bootstrap.css">
+	<title>Рыба</title>
+</head>
+<body>
+	<div class="container" id="app">
+		<div class="stake row justify-content-center">
+			<button type="button" class="btn btn-light btn-lg m-5" @click = 'toggler1()'>{{ stakeBtn1 }}</button>
+			<button type="button" class="btn btn-light btn-lg m-5" @click = 'toggler2()'>{{ stakeBtn2 }}</button>
+		</div>
+
+		<div class="acting row justify-content-center">
+			<button type="button" class="btn btn-light btn-lg m-5" data-toggle="modal" data-target=".bd-example-modal-sm">Acting</button>
+
+			<div class="modal fade bd-example-modal-sm button-2-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  				<div class="modal-dialog modal-sm">
+    				<div class="modal-content text-center">
+      				<p></p>
+    				</div>
+  				</div>
+			</div>
+		</div>
+
+		<div class="withdraw row justify-content-center">
+			<button type="button" class="btn btn-light btn-lg m-5" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Withdraw</button>
+
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+				  <div class="modal-content">
+					 <div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Сколько деняк?</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						  <span aria-hidden="true">&times;</span>
+						</button>
+					 </div>
+					 <div class="modal-body">
+						<form>
+						  <div class="form-group">
+							 <label for="recipient-name" class="col-form-label">Вывод:</label>
+							 <input type="text" class="form-control" id="recipient-name">
+						  </div>
+						</form>
+					 </div>
+					 <div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+						<button type="button" class="btn btn-primary pay-button" data-dismiss="modal">Вывести деняк</button>
+					 </div>
+				  </div>
+				</div>
+			 </div>
+		</div>
+	</div>
+	
+	
+<script src="scripts/jquery.min.js"></script>
+<script src="bootstrap/bootstrap.js"></script>
+<script src="scripts/vue.min.js"></script>
+<script>
+
+	document.addEventListener('DOMContentLoaded', function(){
+		
+		$('.button-2-modal').on('show.bs.modal', function(){
+		setTimeout(()=>{
+			$('.button-2-modal .modal-content p').text('acting');
+		}, 100);
+	})
+	})
+	
+
+	var app = new Vue({
+		el: '#app',
+		data: function(){
+			return {
+				stakeBtn1: 'Stake',
+				stakeBtn2: 'Stake',
+			}
+		},
+		methods: {
+			toggler1: function(stake){
+				this.stakeBtn1 == 'Stake'? this.stakeBtn1 = 'Unstake': this.stakeBtn1 = 'Stake';
+			},
+
+			toggler2: function(stake){
+				this.stakeBtn2 == 'Stake'? this.stakeBtn2 = 'Unstake': this.stakeBtn2 = 'Stake';
+			}
+		}
+	}
+
+	)
+</script>
+</body>
+</html>
