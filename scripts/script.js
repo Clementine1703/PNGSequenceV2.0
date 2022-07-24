@@ -1,7 +1,7 @@
 
 				window.onbeforeunload = function () { window.scrollTo(0, 0); }
 
-				const imageURL = 'bg_images/babina30fps_jpeg_v3<number_of_image>.jpg';
+				const imageURL = 'bg_images/Comp_babina_00<number_of_image>.jpg';
 				// let context_scalled = false;
 				let preloadImagesCounter = 1;
 				let context_visible = true;
@@ -11,11 +11,11 @@
 				let content_container = document.querySelector('.container');
 				let imagesList = [];
 				let introImage = document.querySelector('.image-intro');
-				const imagesStartsWith = 70;
-				const imagesEndWith = 179;
+				const imagesStartsWith = 160;
+				const imagesEndWith = 461;
 				const countOfImages = imagesEndWith - imagesStartsWith;
 				let slides_active = false;
-				let change_slide_range = 0.25 * window.innerHeight;
+				let change_slide_range = 0.1 * window.innerHeight;
 				let block_nav_list = document.querySelector('.blocks-navigate-menu');
 
 				
@@ -342,7 +342,7 @@
 		const preloader_app = new Vue({
 		  				el: '#preloader',
 		  				data: {
-			 				downloadedImages: preloadImagesCounter,
-			 				allImages: countOfImages,
+			 				downloadedImages: Math.round(preloadImagesCounter * 100 / countOfImages),
+			 				allImages: Math.round(countOfImages * 100 / countOfImages),
 		  				},
 				})
