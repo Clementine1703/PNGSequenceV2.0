@@ -28,12 +28,15 @@ function drag() {
             mouseX = e.pageX;
             thX = e.pageX;
         },
-        'mouseup': e => {
-            clicked = false;
-            el = null;
-            allowClick = true;
-        }
     });
+
+	 $(window).on(
+		'mouseup', e => {
+			clicked = false;
+			el = null;
+			allowClick = true;
+	  }
+	 )
 }
 
 function getAllowClick() {
