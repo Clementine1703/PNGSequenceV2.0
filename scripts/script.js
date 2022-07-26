@@ -1,9 +1,16 @@
 
-				window.onbeforeunload = function () { window.scrollTo(0, 0); }
+window.onbeforeunload = function () { window.scrollTo(0, 0); }
 
-				const imageURL = 'bg_images/Comp_babina_00<number_of_image>.jpg';
+
+
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+	alert('мобилка');
+		}
+else {
+	const imageURL = 'bg_images/Comp_babina_00<number_of_image>.jpg';
 				// let context_scalled = false;
 				let preloadImagesCounter = 1;
+				let preloadImagesView = 0;
 				let context_visible = true;
 				let contentBlock = document.querySelector('.site-content');
 				let canvas_conteiner = document.querySelector('.background');
@@ -185,7 +192,8 @@
 					if (preloadImagesCounter < countOfImages){
 						imagesList.push(photo); //для того чтобы фото оставались в памяти
 						preloadImagesCounter++;
-						preloader_app?preloader_app.downloadedImages = preloadImagesCounter:null;
+						preloadImagesView = Math.round(preloadImagesCounter/countOfImages*100);
+						preloader_app?preloader_app.downloadedImages = Math.round(preloadImagesCounter/countOfImages*100):null;
 					}
 					else {
 							deletePreloader();
@@ -341,8 +349,13 @@
 
 		const preloader_app = new Vue({
 		  				el: '#preloader',
-		  				data: {
-			 				downloadedImages: Math.round(preloadImagesCounter * 100 / countOfImages),
+		  				data: function(){
+							return{
+							downloadedImages: preloadImagesView,
 			 				allImages: Math.round(countOfImages * 100 / countOfImages),
-		  				},
+							}
+						}
 				})
+			
+		}
+				
