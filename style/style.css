@@ -144,13 +144,13 @@
 	.block3__content{
 		display: flex;
 		position: relative;
-		background: url(../slides/zanaves_site_slider.png) no-repeat center center;
+		background: url(../slides/studios_site_slide.jpg) no-repeat center center;
 	  -webkit-background-size:  100% 100%;
 	  -moz-background-size:  100% 100%;
 	  -o-background-size:  100% 100%;
 	  background-size: 100% 100%;
 		width: 100vh;
-		height: 300vw;
+		height: 200vw;
 	}
 
 
